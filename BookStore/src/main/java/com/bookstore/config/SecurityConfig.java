@@ -1,8 +1,10 @@
 package com.bookstore.config;
 
-import org.hibernate.cfg.Environment;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.bookstore.Utility.SecurityUtility;
 import com.bookstore.service.impl.UserSecurityService;
 
 @Configuration
@@ -19,10 +22,11 @@ import com.bookstore.service.impl.UserSecurityService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
    
 	@Autowired
-	private Environment environment;
+	private Environment env;
 	
 	@Autowired
 	private UserSecurityService userSecurityService;
+	
 	
 	private BCryptPasswordEncoder passwordEncoder() {
 		return SecurityUtility.passwordEncoder();
@@ -37,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/myAccount"
 	};
 
-	
-	protected void configue(HttpSecurity http) throws Exception {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
 		
 		http
 			.authorizeRequests()
@@ -65,19 +69,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
 	    }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
