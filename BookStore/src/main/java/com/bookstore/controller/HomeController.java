@@ -12,19 +12,34 @@ public class HomeController {
 		
 		return "index";
 	}
-	@RequestMapping("/myAccount")
-	public String myAccount() {
-		return "myAccount";
-		
-		
-	}
+	
+//	@RequestMapping("/myAccount")
+//	public String myAccount() {
+//		return "myAccount";
+//		
+//		
+//	}
 	
 	
 	@RequestMapping("/login")
 	public String login(Model model) {
-		model.addAttribute("ClassActiveLogin", true);
+		model.addAttribute("classActiveLogin", true);
 		return "myAccount";
 		
 	}
+	@RequestMapping("/forgetPassword")
+	public String forgetPassword(Model model) {
+		model.addAttribute("classActiveForgetPassword", true);
+		return "myAccount";
+		
+	}
+	
+	@RequestMapping("/newUser")
+	public String newUser(Model model) {
+		model.addAttribute("classActiveNewUser", true);
+		return "myAccount";
+		
+	}
+	
 	
 }
