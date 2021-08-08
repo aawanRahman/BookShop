@@ -6,4 +6,4 @@ This is demo project developed in https://www.udemy.com/course/complete-e-commer
 
 
 
-All creadit goes to Le Deng, Instructor, Udemy
+Special thanks to Le Deng, Instructor, Udemy
